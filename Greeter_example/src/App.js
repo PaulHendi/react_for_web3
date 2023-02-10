@@ -1,7 +1,8 @@
 import './App.css';
 import { useState } from 'react';
-import { ethers } from 'ethers'
-import Greeter from './artifacts/contracts/Greeter.sol/Greeter.json'
+import { ethers } from 'ethers';
+import Greeter from './artifacts/contracts/Greeter.sol/Greeter.json';
+import WalletBalance from './WalletBalance';
 
 // Update with the contract address logged out to the CLI when it was deployed 
 const greeterAddress = "0xD2dd2D593802148C95e0ef1C187832cc215C5AEA"
@@ -9,7 +10,27 @@ const greeterAddress = "0xD2dd2D593802148C95e0ef1C187832cc215C5AEA"
 function App() {
   // store greeting in local state
   const [greeting, setGreetingValue] = useState()
+  const [signer_address, setSignerAddress] = useState()
+  const [provider, setProvider] = useState()
+  const [signer, setSigner] = useState()
+
   let data;
+
+
+
+  async function connectWallet(){
+    if (typeof window.ethereum !== 'undefined') {
+      requestAccount()
+      let _provider = new ethers.providers.Web3Provider(window.ethereum);
+      let _signer = await _provider.getSigner();
+      setSignerAddress(await _signer.getAddress())
+      setProvider(_provider)
+      setSigner(_signer)
+    }
+  }
+
+  
+
   // request access to the user's MetaMask account
   async function requestAccount() {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -32,23 +53,23 @@ function App() {
   // call the smart contract, send an update
   async function setGreeting() {
     if (!greeting) return
-    if (typeof window.ethereum !== 'undefined') {
-      await requestAccount()
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner()
-      const contract = new ethers.Contract(greeterAddress, Greeter.abi, signer)
-      const transaction = await contract.setGreeting(greeting)
-      await transaction.wait()
-      fetchGreeting()
-    }
+    
+    const contract = new ethers.Contract(greeterAddress, Greeter.abi, signer)
+    const transaction = await contract.setGreeting(greeting)
+    await transaction.wait()
+    fetchGreeting()
+    
   }
+
 
   return (
     <div className="App">
       <header className="App-header">
+        <button onClick={connectWallet}>ConnectWallet</button>
         <button onClick={fetchGreeting}>Fetch Greeting</button>
         <button onClick={setGreeting}>Set Greeting</button>
         <input onChange={e => setGreetingValue(e.target.value)} placeholder="Set greeting" />
+        <WalletBalance provider={provider} address={signer_address}  />
       </header>
     </div>
   );
