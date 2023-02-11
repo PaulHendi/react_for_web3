@@ -10,9 +10,9 @@ const greeterAddress = "0xD2dd2D593802148C95e0ef1C187832cc215C5AEA"
 function App() {
   // store greeting in local state
   const [greeting, setGreetingValue] = useState()
-  const [signer_address, setSignerAddress] = useState()
-  const [provider, setProvider] = useState()
-  const [signer, setSigner] = useState()
+  const [signer_address, setSignerAddress] = useState(null)
+  const [provider, setProvider] = useState(null)
+  const [signer, setSigner] = useState(null)
 
   let data;
 
@@ -27,6 +27,10 @@ function App() {
       setProvider(_provider)
       setSigner(_signer)
     }
+  }
+
+  async function disconnectWallet() {
+    setSigner(null);
   }
 
   
@@ -66,6 +70,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <button onClick={connectWallet}>ConnectWallet</button>
+        <button onClick={disconnectWallet}>DisconnectWallet</button>
         <button onClick={fetchGreeting}>Fetch Greeting</button>
         <button onClick={setGreeting}>Set Greeting</button>
         <input onChange={e => setGreetingValue(e.target.value)} placeholder="Set greeting" />

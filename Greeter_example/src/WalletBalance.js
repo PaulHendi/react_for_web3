@@ -6,6 +6,9 @@ export default  function WalletBalance({provider, address }) {
 
   useEffect(() => {
     async function fetchBalance() {
+      if (!address || !provider) {
+        return;
+      }
       const balance = await provider.getBalance(address);
       setBalance(utils.formatEther(balance));
     }
