@@ -2,11 +2,10 @@ import { Contract } from '@ethersproject/contracts'
 import { utils } from 'ethers'
 import { useCall, useLogs, useTokenBalance, useContractFunction } from '@usedapp/core'
 import CoinFlip from '../abi/CoinFlip.json'
-import Call from './Call'
 import DidWin from './DidWin'
 
 export default function Play() {
-    const CoinFlipContractAddress = "0xBa962CdB7f12d60ECB198E8710DE7A401493E485"
+    const CoinFlipContractAddress = "0xb999a44A9f014B7151cF11fCd11c5749A6e2E461"
     const CoinFlipInterface = new utils.Interface(CoinFlip.abi)
     const contract = CoinFlipContractAddress && (new Contract(CoinFlipContractAddress, CoinFlipInterface) )
     const { state, send } = useContractFunction(contract, 'play', { transactionName: 'play' })
@@ -18,7 +17,6 @@ export default function Play() {
     return (
       <div>
         <button onClick={() => play('0.1')}>Play</button>
-        <Call/>
         <DidWin/>
       </div>
     )
