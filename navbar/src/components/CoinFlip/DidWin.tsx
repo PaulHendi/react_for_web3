@@ -3,6 +3,7 @@ import { utils } from 'ethers'
 import { useCall, useLogs, useTokenBalance, useContractFunction } from '@usedapp/core'
 import CoinFlip from '../../abi/CoinFlip.json'
 
+
 interface TokenID {
     tokenID: string
 }

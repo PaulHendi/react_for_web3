@@ -24,6 +24,7 @@ function Navbar() {
             <NavbarLink to="/mint">Mint</NavbarLink>
             <NavbarLink to="/lottery">Lottery</NavbarLink>
             <NavbarLink to="/coinflip">CoinFlip</NavbarLink>
+            <NavbarLink to="/staking">Staking</NavbarLink>
           </NavbarLinkCointainer>
         </RightContainer>
       </NavbarInnerContainer>

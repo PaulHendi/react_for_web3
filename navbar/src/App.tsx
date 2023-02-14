@@ -21,6 +21,7 @@ function App({config} : ConfigProps) {
         <Route path="/mint" element={<MintNFT/>} />
         <Route path="/Lottery" element={<h1>Lottery</h1>} />
         <Route path="/coinflip" element={<Play/>} />
+        <Route path="/staking" element={<h1>Staking</h1>} />
       </Routes>
     </Router>
   )
