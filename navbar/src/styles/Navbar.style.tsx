@@ -40,15 +40,20 @@ export const NavbarLink = styled(Link)`
     text-decoration: none;
     margin: 10px;
     &:hover {
-        color: #22AAA1;
+        color: #9381FF;
         transform: translate(0,  -2px);
     }
 `    
 
 export const Logo = styled.img`
 margin: 5px;
-max-width:60px;
+max-width:80px;
 height:auto;
 ` 
+
+export const Name = styled.h1`
+    color: #9381FF;
+    margin: 10px;
+    `
     
 export const NavbarExtendedContainer = styled.div``

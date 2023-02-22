@@ -9,7 +9,7 @@ import {NavbarContainer,
         Logo
 } from "../styles/Navbar.style.jsx";
 
-import LogoImg from "../assets/melinoe.png";
+import LogoImg from "../assets/ObakeLogo.jpg";
 
 function Navbar() {
   return (

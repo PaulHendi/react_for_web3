@@ -6,10 +6,11 @@ import {NavbarContainer,
         NavbarExtendedContainer,
         NavbarLinkCointainer,
         NavbarLink,
-        Logo
+        Logo,
+        Name
 } from "../styles/Navbar.style.jsx";
 
-import LogoImg from "../assets/melinoe.png";
+import LogoImg from "../assets/ObakeLogo.jpg";
 
 function Navbar() {
   return (
@@ -17,6 +18,7 @@ function Navbar() {
       <NavbarInnerContainer>
         <LeftContainer>
         <Logo src={LogoImg} />
+        <Name>Obake</Name>
          </LeftContainer>
         <RightContainer>
           <NavbarLinkCointainer>
